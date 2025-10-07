@@ -20,6 +20,22 @@
 
 ## English
 
+## 📊 Architecture Diagram
+
+```mermaid
+graph TB
+    A[Data Sources] --> B[Profiling]
+    B --> C[Validation Rules]
+    C --> D[Quality Checks]
+    D --> E[Reports]
+    E --> F[Data Governance]
+    
+    style A fill:#e1f5ff
+    style F fill:#c8e6c9
+    style C fill:#fff9c4
+```
+
+
 ## 🎯 Features
 
 - Data Profiling
