@@ -8,7 +8,6 @@
 ![Pandera](https://img.shields.io/badge/Pandera-blue)
 ![dbt](https://img.shields.io/badge/dbt-blue)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
 
 **Comprehensive data quality framework with Great Expectations, Pandera for automated validation and governance**
 
