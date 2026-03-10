@@ -1,276 +1,127 @@
-# 📊 Data Quality Validation Framework
+# Data Quality Validation Framework
 
-> Professional Python project implementing Data Quality Validation Framework
+<div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
-[![NumPy](https://img.shields.io/badge/NumPy-1.26-013243.svg)](https://img.shields.io/badge/)
-[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://img.shields.io/badge/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
-[English](#english) | [Português](#português)
+</div>
+
+**[English](#english)** | **[Portugues (BR)](#portugues-br)**
 
 ---
 
 ## English
 
-### 🎯 Overview
+### Overview
 
-**Data Quality Validation Framework** is a production-grade Python application that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
+A comprehensive data quality validation framework implementing schema validation, null checks, type checks, range validation, uniqueness checks, referential integrity verification, a custom rules engine, and validation reporting. Built in pure Python.
 
-The codebase comprises **111 lines** of source code organized across **2 modules**, following industry best practices for maintainability, scalability, and code quality.
-
-### ✨ Key Features
-
-- **🔄 Data Pipeline**: Scalable ETL with parallel processing
-- **✅ Data Validation**: Schema validation and quality checks
-- **📊 Monitoring**: Pipeline health metrics and alerting
-- **🔧 Configurability**: YAML/JSON-based pipeline configuration
-- **🏗️ Object-Oriented**: 4 core classes with clean architecture
-
-### 🏗️ Architecture
+### Architecture
 
 ```mermaid
-graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
-    end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
-    end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
+graph TD
+    A[Input Data] --> B[Schema Validator]
+    A --> C[Null Checker]
+    A --> D[Type Checker]
+    A --> E[Range Validator]
+    A --> F[Uniqueness Checker]
+    A --> G[Referential Integrity]
+    A --> H[Custom Rules Engine]
+    B --> I[Validation Results]
+    C --> I
+    D --> I
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+    I --> J[Validation Report]
+    J --> K[Summary Statistics]
+    J --> L[Detailed Failures]
 ```
 
-### 🚀 Quick Start
+### Features
 
-#### Prerequisites
+- **Schema Validation**: Validate data against column definitions (type, required, min/max, pattern, allowed values)
+- **Null Checks**: Detect missing or empty values with null rate statistics
+- **Type Checks**: Verify column data types (int, float, str, bool)
+- **Range Validation**: Ensure numeric values fall within expected bounds
+- **Uniqueness Checks**: Detect duplicate values in key columns
+- **Referential Integrity**: Verify foreign key relationships between datasets
+- **Custom Rules Engine**: Define and apply arbitrary validation functions
+- **Validation Reports**: Generate summary and detailed reports
 
-- Python 3.12+
-- pip (Python package manager)
+### Usage
 
-#### Installation
+```python
+from src.validators import SchemaValidator, NullChecker, ValidationReport
+
+schema = {
+    "id": {"type": "int", "required": True},
+    "name": {"type": "str", "required": True},
+    "age": {"type": "int", "min": 0, "max": 150},
+    "email": {"pattern": r"^[\w.]+@[\w.]+\.\w+$"},
+}
+
+data = [{"id": 1, "name": "Alice", "age": 30, "email": "alice@example.com"}]
+
+validator = SchemaValidator(schema)
+results = validator.validate(data)
+report = ValidationReport.generate(results)
+print(ValidationReport.to_text(results))
+```
+
+### Running Tests
 
 ```bash
-# Clone the repository
-git clone https://github.com/galafis/data-quality-validation-framework.git
-cd data-quality-validation-framework
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+pytest tests/ -v
 ```
 
-#### Running
+### Author
 
-```bash
-# Run the application
-python src/main.py
-```
-
-### 🧪 Testing
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Project Structure
-
-```
-data-quality-validation-framework/
-├── assets/
-├── data/
-├── docs/          # Documentation
-├── expectations/
-├── notebooks/
-├── src/          # Source code
-│   ├── profilers/
-│   └── validators/
-├── tests/         # Test suite
-│   └── test_models.py
-├── LICENSE
-├── README.md
-├── requirements.txt
-└── setup.py
-```
-
-### 🛠️ Tech Stack
-
-| Technology | Description | Role |
-|------------|-------------|------|
-| **Python** | Core Language | Primary |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-
-### 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### 👤 Author
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+**Gabriel Demetrios Lafis** - [GitHub](https://github.com/galafis)
 
 ---
 
-## Português
+## Portugues BR
 
-### 🎯 Visão Geral
+### Visao Geral
 
-**Data Quality Validation Framework** é uma aplicação Python de nível profissional que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
+Um framework completo de validacao de qualidade de dados implementando validacao de schema, checagem de nulos, checagem de tipos, validacao de range, checagem de unicidade, verificacao de integridade referencial, motor de regras customizadas e relatorios de validacao.
 
-A base de código compreende **111 linhas** de código-fonte organizadas em **2 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
-
-### ✨ Funcionalidades Principais
-
-- **🔄 Data Pipeline**: Scalable ETL with parallel processing
-- **✅ Data Validation**: Schema validation and quality checks
-- **📊 Monitoring**: Pipeline health metrics and alerting
-- **🔧 Configurability**: YAML/JSON-based pipeline configuration
-- **🏗️ Object-Oriented**: 4 core classes with clean architecture
-
-### 🏗️ Arquitetura
+### Arquitetura
 
 ```mermaid
-graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
-    end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
-    end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
+graph TD
+    A[Dados de Entrada] --> B[Validador de Schema]
+    A --> C[Checagem de Nulos]
+    A --> D[Checagem de Tipos]
+    A --> E[Validacao de Range]
+    A --> F[Checagem de Unicidade]
+    A --> G[Integridade Referencial]
+    A --> H[Regras Customizadas]
+    B --> I[Resultados]
+    C --> I
+    D --> I
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+    I --> J[Relatorio de Validacao]
 ```
 
-### 🚀 Início Rápido
+### Funcionalidades
 
-#### Prerequisites
+- **Validacao de Schema**: Validar dados contra definicoes de colunas
+- **Checagem de Nulos**: Detectar valores ausentes com estatisticas
+- **Checagem de Tipos**: Verificar tipos de dados das colunas
+- **Validacao de Range**: Garantir valores dentro de limites esperados
+- **Unicidade**: Detectar valores duplicados
+- **Integridade Referencial**: Verificar relacionamentos entre datasets
+- **Regras Customizadas**: Motor para funcoes de validacao arbitrarias
+- **Relatorios**: Gerar relatorios resumidos e detalhados
 
-- Python 3.12+
-- pip (Python package manager)
+---
 
-#### Installation
+## License
 
-```bash
-# Clone the repository
-git clone https://github.com/galafis/data-quality-validation-framework.git
-cd data-quality-validation-framework
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-#### Running
-
-```bash
-# Run the application
-python src/main.py
-```
-
-### 🧪 Testing
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Estrutura do Projeto
-
-```
-data-quality-validation-framework/
-├── assets/
-├── data/
-├── docs/          # Documentation
-├── expectations/
-├── notebooks/
-├── src/          # Source code
-│   ├── profilers/
-│   └── validators/
-├── tests/         # Test suite
-│   └── test_models.py
-├── LICENSE
-├── README.md
-├── requirements.txt
-└── setup.py
-```
-
-### 🛠️ Stack Tecnológica
-
-| Tecnologia | Descrição | Papel |
-|------------|-----------|-------|
-| **Python** | Core Language | Primary |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-
-### 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
-
-### 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### 👤 Autor
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+MIT License - see [LICENSE](LICENSE) for details.
